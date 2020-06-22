@@ -106,6 +106,7 @@ export default class Toolbar extends Component {
           <FaPlus />
         </ToolbarButton>
       },
+      /*
       {
         index: 4, condition: true, dom: <ToolbarButton
           active={[MODE_3D_VIEW].includes(mode)}
@@ -130,6 +131,7 @@ export default class Toolbar extends Component {
           <MdDirectionsRun />
         </ToolbarButton>
       },
+      */
       {
         index: 7, condition: true, dom: <ToolbarButton
           active={false}
