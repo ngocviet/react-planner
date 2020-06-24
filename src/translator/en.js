@@ -75,5 +75,6 @@ export default {
   "width": "width",
   "Would you want to start a new Project?": "Would you want to start a new Project?",
   "Zoom in": "Zoom in",
-  "Zoom out": "Zoom out"
+  "Zoom out": "Zoom out",
+  "Default Wall Height": "Default Wall Height"
 };

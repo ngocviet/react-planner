@@ -5,6 +5,7 @@ import { FaFile, FaMousePointer, FaPlus } from 'react-icons/fa';
 import ToolbarButton from './toolbar-button';
 import ToolbarSaveButton from './toolbar-save-button';
 import ToolbarLoadButton from './toolbar-load-button';
+import ToolbarExportButton from './toolbar-export-button';
 import If from '../../utils/react-if';
 import {
   MODE_IDLE,
@@ -98,7 +99,11 @@ export default class Toolbar extends Component {
         dom: <ToolbarLoadButton state={state} />
       },
       {
-        index: 3, condition: true,
+        index: 3, condition: allowProjectFileSupport,
+        dom: <ToolbarExportButton state={state} />
+      },
+      {
+        index: 4, condition: true,
         dom: <ToolbarButton
           active={[MODE_VIEWING_CATALOG].includes(mode)}
           tooltip={translator.t('Open catalog')}

@@ -59,12 +59,12 @@ class ReactPlanner extends Component {
     let {width, height, state, stateExtractor, ...props} = this.props;
 
     let contentW = width - toolbarW - sidebarW;
-    // let toolbarH = height - footerBarH;
-    let toolbarH = height;
-    // let contentH = height - footerBarH;
-    let contentH = height;
-    // let sidebarH = height - footerBarH;
-    let sidebarH = height;
+    let toolbarH = height - footerBarH;
+    // let toolbarH = height;
+    let contentH = height - footerBarH;
+    // let contentH = height;
+    let sidebarH = height - footerBarH;
+    // let sidebarH = height;
 
     let extractedState = stateExtractor(state);
 
@@ -73,7 +73,7 @@ class ReactPlanner extends Component {
         <Toolbar width={toolbarW} height={toolbarH} state={extractedState} {...props} />
         <Content width={contentW} height={contentH} state={extractedState} {...props} onWheel={event => event.preventDefault()} />
         <Sidebar width={sidebarW} height={sidebarH} state={extractedState} {...props} />
-        {/* <FooterBar width={width} height={footerBarH} state={extractedState} {...props} /> */}
+        <FooterBar width={width} height={footerBarH} state={extractedState} {...props} />
       </div>
     );
   }
@@ -111,7 +111,7 @@ ReactPlanner.defaultProps = {
   catalog: new Catalog(),
   plugins: [],
   allowProjectFileSupport: true,
-  softwareSignature: `React-Planner ${VERSION}`,
+  softwareSignature: `DEODEM UC ${VERSION}`,
   toolbarButtons: [],
   sidebarComponents: [],
   footerbarComponents: [],

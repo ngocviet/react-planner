@@ -2,18 +2,18 @@ import * as Three from 'three';
 import React from 'react';
 
 const PI_2 = Math.PI / 2;
-const paintedtexture = require('./painted.jpg');
-const brickTexture = require('./bricks.jpg');
+const drytexture = require('./dry.jpg');
+const wettexture = require('./wet.jpg');
 const scale = 100;
 
 let textureLoader = new Three.TextureLoader();
 textureLoader.setPath('./');
-let mat = textureLoader.load(paintedtexture);
-let mat2 = textureLoader.load(brickTexture);
+let mat = textureLoader.load(drytexture);
+let mat2 = textureLoader.load(wetTexture);
 
 function makeObject(newWidth, newHeight, newDepth) {
 
-  let mat3 = textureLoader.load( brickTexture, ( texture ) => {
+  let mat3 = textureLoader.load( wettexture, ( texture ) => {
     texture.wrapS = texture.wrapT = Three.RepeatWrapping;
     texture.offset.set( 0, 0 );
     texture.repeat.set( ~~( newWidth / scale ), ~~( newHeight / scale ) );

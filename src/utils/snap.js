@@ -77,6 +77,22 @@ class GridSnap extends Record({
   isNear(x,y,distance){ return ~(this.x - x) + 1 < distance && ~(this.y - y) + 1 < distance; }
 }
 
+class PerpendicularSnap extends Record({
+  type: 'perpendicular',
+  x: -1, y: -1,
+  radius: 1, priority: 1,
+  related: new List()
+}) {
+  nearestPoint(x, y) {
+    return {
+      x: this.x,
+      y: this.y,
+      distance: Geometry.pointsDistance(this.x, this.y, x, y)
+    };
+  }
+  isNear(x,y,distance){ return ~(this.x - x) + 1 < distance && ~(this.y - y) + 1 < distance; }
+}
+
 export function nearestSnap(snapElements, x, y, snapMask) {
 
   let filter = {

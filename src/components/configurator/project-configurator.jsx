@@ -20,6 +20,7 @@ export default class ProjectConfigurator extends Component {
     this.state = {
       dataWidth: scene.width,
       dataHeight: scene.height,
+      defaultWallHeight: 300
     };
   }
 
@@ -64,6 +65,16 @@ export default class ProjectConfigurator extends Component {
             <FormNumberInput
               id='height'
               placeholder='height'
+              value={dataHeight}
+              onChange={e => this.setState({dataHeight: e.target.value})}
+            />
+          </FormBlock>
+
+          <FormBlock>
+            <FormLabel htmlFor='default-wall-height'>{translator.t('Default Wall Height')}</FormLabel>
+            <FormNumberInput
+              id='default-wall-height'
+              placeholder='default-wall-height'
               value={dataHeight}
               onChange={e => this.setState({dataHeight: e.target.value})}
             />

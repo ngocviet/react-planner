@@ -3,7 +3,7 @@ import {ElementsFactories} from 'react-planner';
 const info = {
   title: 'wall',
   tag: ['wall'],
-  description: 'Wall with bricks or painted',
+  description: 'Wall with wet or dry',
   image: require('./wall.png'),
   visibility: {
     catalog: true,
@@ -12,26 +12,26 @@ const info = {
 };
 
 const textures = {
-  bricks: {
-    name: 'Bricks',
-    uri: require('./textures/bricks.jpg'),
+  dry: {
+    name: 'Dry',
+    uri: require('./textures/dry.jpg'),
     lengthRepeatScale: 0.01,
     heightRepeatScale: 0.01,
     normal: {
-      uri: require('./textures/bricks-normal.jpg'),
+      uri: require('./textures/dry-normal.jpg'),
       lengthRepeatScale: 0.01,
       heightRepeatScale: 0.01,
       normalScaleX: 0.8,
       normalScaleY: 0.8
     }
   },
-  painted: {
-    name:'Painted',
-    uri: require('./textures/painted.jpg'),
+  wet: {
+    name:'Wet',
+    uri: require('./textures/wet.jpg'),
     lengthRepeatScale: 0.01,
     heightRepeatScale: 0.01,
     normal: {
-      uri: require('./textures/painted-normal.jpg'),
+      uri: require('./textures/wet-normal.jpg'),
       lengthRepeatScale: 0.01,
       heightRepeatScale: 0.01,
       normalScaleX: 0.4,

@@ -1,3 +1,6 @@
+import { isNil } from 'lodash';
+import { saveAs } from 'file-saver';
+
 export function browserDownload(json) {
   let fileOutputLink = document.createElement('a');
 
@@ -6,7 +9,7 @@ export function browserDownload(json) {
   if (!filename) return;
 
   let output = JSON.stringify(json);
-  let data = new Blob([output], {type: 'text/plain'});
+  let data = new Blob([output], { type: 'text/plain' });
   let url = window.URL.createObjectURL(data);
   fileOutputLink.setAttribute('download', filename);
   fileOutputLink.href = url;
@@ -34,4 +37,31 @@ export function browserUpload() {
 
     fileInput.click();
   });
+}
+
+export function csvDownload(json) {
+  if (_.isNil(json) || _.isNil(json[0])) {
+    return;
+  }
+
+  let filename = 'wall_generate_' + Date.now() + '.csv';
+
+  const headers = Object.keys(json[0]);
+
+  let csvContent = "";
+
+  csvContent += headers.join(',');
+  csvContent += "\r\n";
+
+  _.map(json, row => {
+    let rowArray = [];
+    _.map(headers, header => {
+      rowArray.push(row[header]);
+    });
+    let rowStr = rowArray.join(',');
+    csvContent += rowStr + "\r\n";
+  });
+
+  var blob = new Blob([csvContent], { type: "data:text/csv;charset=utf-8" });
+  saveAs(blob, filename);
 }
