@@ -1,4 +1,5 @@
 import React from 'react';
+import * as _ from 'lodash';
 import { buildWall, updatedWall } from './wall-factory-3d';
 import * as SharedStyle from '../../shared-style';
 import * as Geometry from '../../utils/geometry';
@@ -12,7 +13,7 @@ const STYLE_RECT_SELECTED = { ...STYLE_RECT, stroke: SharedStyle.LINE_MESH_COLOR
 
 let translator = new Translator();
 
-export default function WallFactory(name, info, textures) {
+export default function WallFactory(name, info, textures, properties) {
 
   let wallElement = {
     name,
@@ -91,6 +92,10 @@ export default function WallFactory(name, info, textures) {
       values: textureValues
     };
 
+  }
+
+  if (!_.isNil(properties))  {
+    _.merge(wallElement.properties, properties);
   }
 
   return wallElement;
