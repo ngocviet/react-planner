@@ -1,18 +1,21 @@
 import {Map, List, Record} from 'immutable';
 import * as Geometry from './geometry';
+import { GeometryUtils } from './export';
 
 export const SNAP_POINT = 'SNAP_POINT';
 export const SNAP_LINE = 'SNAP_LINE';
 export const SNAP_SEGMENT = 'SNAP_SEGMENT';
 export const SNAP_GRID = 'SNAP_GRID';
 export const SNAP_GUIDE = 'SNAP_GUIDE';
+export const SNAP_ORTHO = 'SNAP_ORTHO';
 
 export const SNAP_MASK = new Map({
   SNAP_POINT : true,
   SNAP_LINE : true,
   SNAP_SEGMENT : true,
   SNAP_GRID : false,
-  SNAP_GUIDE : true
+  SNAP_GUIDE : true,
+  SNAP_ORTHO: true
 });
 
 class PointSnap extends Record({
@@ -77,20 +80,35 @@ class GridSnap extends Record({
   isNear(x,y,distance){ return ~(this.x - x) + 1 < distance && ~(this.y - y) + 1 < distance; }
 }
 
-class PerpendicularSnap extends Record({
-  type: 'perpendicular',
+class OrthoSnap extends Record({
+  type: 'ortho',
   x: -1, y: -1,
-  radius: 1, priority: 1,
-  related: new List()
+  radius: 1, priority: 10
 }) {
   nearestPoint(x, y) {
-    return {
-      x: this.x,
-      y: this.y,
-      distance: Geometry.pointsDistance(this.x, this.y, x, y)
-    };
+    let a, b, c;
+    const horizontalLine = GeometryUtils.horizontalLine(this.y);
+    const verticalLine = GeometryUtils.verticalLine(this.x);
+    const closestPointFromHorizontalLine = Geometry.closestPointFromLine(horizontalLine.a, horizontalLine.b, horizontalLine.c, x, y);
+    const closestPointFromVerticalLine = Geometry.closestPointFromLine(verticalLine.a, verticalLine.b, verticalLine.c, x, y);
+    const distancePointFromHorizontalLine = Geometry.distancePointFromLine(horizontalLine.a, horizontalLine.b, horizontalLine.c, x, y);
+    const distancePointFromVerticalLine = Geometry.distancePointFromLine(verticalLine.a, verticalLine.b, verticalLine.c, x, y);
+
+    if (distancePointFromHorizontalLine < distancePointFromVerticalLine) {
+      return {
+        x: closestPointFromHorizontalLine.x,
+        y: closestPointFromHorizontalLine.y,
+        distance: distancePointFromHorizontalLine
+      };
+    } else {
+      return {
+        x: closestPointFromVerticalLine.x,
+        y: closestPointFromVerticalLine.y,
+        distance: distancePointFromVerticalLine
+      };
+    }
   }
-  isNear(x,y,distance){ return ~(this.x - x) + 1 < distance && ~(this.y - y) + 1 < distance; }
+  isNear(x,y,distance){ return true; }
 }
 
 export function nearestSnap(snapElements, x, y, snapMask) {
@@ -99,7 +117,8 @@ export function nearestSnap(snapElements, x, y, snapMask) {
     'point': snapMask.get(SNAP_POINT),
     'line': snapMask.get(SNAP_LINE),
     'line-segment': snapMask.get(SNAP_SEGMENT),
-    'grid': snapMask.get(SNAP_GRID)
+    'grid': snapMask.get(SNAP_GRID),
+    'ortho': snapMask.get(SNAP_ORTHO)
   };
 
   return snapElements
@@ -151,4 +170,8 @@ export function addLineSegmentSnap(snapElements, x1, y1, x2, y2, radius, priorit
 export function addGridSnap(snapElements, x, y, radius, priority, related) {
   related = new List([related]);
   return snapElements.push(new GridSnap({x, y, radius, priority, related}));
+}
+
+export function addOrthoSnap(snapElements, x, y, radius, priority) {
+  return snapElements.push(new OrthoSnap({x, y, radius, priority}));
 }

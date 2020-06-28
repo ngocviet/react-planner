@@ -4,15 +4,17 @@ import {
   SNAP_SEGMENT,
   SNAP_GRID,
   SNAP_GUIDE,
+  SNAP_ORTHO,
   addPointSnap,
   addLineSnap,
   addLineSegmentSnap,
-  addGridSnap
+  addGridSnap,
+  addOrthoSnap
 } from './snap';
 import { GeometryUtils } from './export';
 import { Map, List } from 'immutable';
 
-export function sceneSnapElements(scene, snapElements = new List(), snapMask = new Map()) {
+export function sceneSnapElements(scene, snapElements = new List(), snapMask = new Map(), pointX, pointY) {
 
   let { width, height } = scene;
 
@@ -47,6 +49,10 @@ export function sceneSnapElements(scene, snapElements = new List(), snapMask = n
       }
 
     });
+
+    if (snapMask.get(SNAP_ORTHO) && pointX != undefined && pointY != undefined) {
+      addOrthoSnap(snapElements, pointX, pointY, Number.MAX_SAFE_INTEGER, 10);
+    }
 
     if (snapMask.get(SNAP_GRID)) {
       let divider = 5;
@@ -88,4 +94,13 @@ export function sceneSnapElements(scene, snapElements = new List(), snapMask = n
     }
 
   })
+}
+
+export function sceneOrthoSnapElements(scene, x, y, snapElements = new List(), snapMask = new Map()) {
+
+  return snapElements.withMutations(snapElements => {
+    if (snapMask.get(SNAP_ORTHO)) {
+      addOrthoSnap(snapElements, x, y, Number.MAX_SAFE_INTEGER, 10);
+    }
+  });
 }

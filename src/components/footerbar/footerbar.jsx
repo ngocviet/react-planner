@@ -92,6 +92,14 @@ export default class FooterBar extends Component {
           <div style={leftTextStyle}>
             <FooterToggleButton
               state={this.state}
+              toggleOn={() => { updateSnapMask({ SNAP_ORTHO: true }); }}
+              toggleOff={() => { updateSnapMask({ SNAP_ORTHO: false }); }}
+              text="Ortho"
+              toggleState={globalState.snapMask.get(SNAP_POINT)}
+              title={translator.t('Orthogonal')}
+            />
+            <FooterToggleButton
+              state={this.state}
               toggleOn={() => { updateSnapMask({ SNAP_POINT: true }); }}
               toggleOff={() => { updateSnapMask({ SNAP_POINT: false }); }}
               text="Snap PT"

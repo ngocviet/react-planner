@@ -19,6 +19,8 @@ import {
   MODE_DRAGGING_LINE
 } from '../constants';
 
+import { SNAP_ORTHO } from '../utils/snap';
+
 class Line{
 
   static create( state, layerID, type, x0, y0, x1, y1, properties ) {
@@ -244,8 +246,13 @@ class Line{
   }
 
   static beginDrawingLine(state, layerID, x, y) {
-    let snapElements = SnapSceneUtils.sceneSnapElements(state.scene, new List(), state.snapMask);
+
+    let snapElements;
     let snap = null;
+
+    if (state.snapMask && !state.snapMask.isEmpty()) {
+      snapElements = SnapSceneUtils.sceneSnapElements(state.scene, new List(), state.snapMask, x, y);
+    }
 
     if (state.snapMask && !state.snapMask.isEmpty()) {
       snap = SnapUtils.nearestSnap(snapElements, x, y, state.snapMask);
