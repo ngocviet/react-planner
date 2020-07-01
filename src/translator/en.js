@@ -64,6 +64,7 @@ export default {
   "Snap to Line":"Snap to Line",
   "Snap to Point":"Snap to Point",
   "Snap to Segment":"Snap to Segment",
+  "Orthogonal": "Orthogonal",
   "texture":"texture",
   "thickness":"thickness",
   "Toggle Group Visibility":"Toggle Group Visibility",
@@ -76,5 +77,6 @@ export default {
   "Would you want to start a new Project?": "Would you want to start a new Project?",
   "Zoom in": "Zoom in",
   "Zoom out": "Zoom out",
-  "Default Wall Height": "Default Wall Height"
+  "Default Wall Height": "Default Wall Height",
+  "Default Wall Width": "Default Wall Width"
 };

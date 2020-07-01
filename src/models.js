@@ -207,6 +207,8 @@ export class Scene extends Record({
   groups: new Map(),
   width: 3000,
   height: 2000,
+  defaultWallWidth: 20,
+  defaultWallHeight: 300,
   meta: new Map(),   //additional info
   guides: new Map()
 }, 'Scene') {

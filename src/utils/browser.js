@@ -44,7 +44,7 @@ export function csvDownload(json) {
     return;
   }
 
-  let filename = 'wall_generate_' + Date.now() + '.csv';
+  let filename = 'result_generate_' + Date.now() + '.csv';
 
   const headers = Object.keys(json[0]);
 

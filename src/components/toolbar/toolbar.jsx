@@ -64,10 +64,18 @@ export default class Toolbar extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
+    if (this.isRefersh === true) {
+      this.isRefersh = false;
+      return true;
+    }
     return this.props.state.mode !== nextProps.state.mode ||
       this.props.height !== nextProps.height ||
       this.props.width !== nextProps.width ||
       this.props.state.alterate !== nextProps.state.alterate;
+  }
+
+  componentWillMount() {
+    this.isRefersh = true;
   }
 
   render() {
