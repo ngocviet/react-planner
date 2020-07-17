@@ -369,6 +369,14 @@ export default function Viewer2D(
               <rect x="0" y="0" width="4" height="4" fill="#FFF" />
               <path d="M-1,1 l2,-2 M0,4 l4,-4 M3,5 l2,-2" style={{ stroke: '#8E9BA2', strokeWidth: 1 }} />
             </pattern>
+            <pattern id="diagonalFillRed" patternUnits="userSpaceOnUse" width="4" height="4" fill="#FFF">
+              <rect x="0" y="0" width="4" height="4" fill="#FFF" />
+              <path d="M-1,1 l2,-2 M0,4 l4,-4 M3,5 l2,-2" style={{ stroke: '#DB4D5B', strokeWidth: 1 }} />
+            </pattern>
+            <pattern id="diagonalFillGreen" patternUnits="userSpaceOnUse" width="4" height="4" fill="#FFF">
+              <rect x="0" y="0" width="4" height="4" fill="#FFF" />
+              <path d="M-1,1 l2,-2 M0,4 l4,-4 M3,5 l2,-2" style={{ stroke: '#4DDB78', strokeWidth: 1 }} />
+            </pattern>
           </defs>
           <g style={Object.assign(mode2Cursor(mode), mode2PointerEvents(mode))}>
             <State state={state} catalog={catalog} />

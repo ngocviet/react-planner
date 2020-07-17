@@ -1,7 +1,7 @@
-import { ElementsFactories } from 'react-planner';
+import {ElementsFactories} from 'react-planner';
 
 const info = {
-  title: 'PERIMETER WALL',
+  title: 'INTERIOR WALL',
   tag: ['wall'],
   description: '',
   image: require('./wall.png'),
@@ -26,7 +26,7 @@ const textures = {
     }
   },
   wet: {
-    name: 'Wet',
+    name:'Wet',
     uri: require('./textures/wet.jpg'),
     lengthRepeatScale: 0.01,
     heightRepeatScale: 0.01,
@@ -40,5 +40,5 @@ const textures = {
   },
 };
 
-export default ElementsFactories.WallFactory('wall', info, textures);
+export default ElementsFactories.WallFactory('interior-wall', info, textures);
 

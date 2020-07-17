@@ -106,8 +106,8 @@ const STYLE_TAG = {
 
 export default class CatalogItem extends Component {
 
-  constructor(props) {
-    super(props);
+  constructor(props, context) {
+    super(props, context);
     this.state = {hover: false};
   }
 
@@ -132,6 +132,9 @@ export default class CatalogItem extends Component {
   render() {
     let element = this.props.element;
     let hover = this.state.hover;
+    let {
+      context: { translator }
+    } = this;
 
     return (
       <div
@@ -140,7 +143,7 @@ export default class CatalogItem extends Component {
         onMouseEnter={e => this.setState({hover: true})}
         onMouseLeave={e => this.setState({hover: false})}
       >
-        <b style={ !hover ? STYLE_TITLE : STYLE_TITLE_HOVER }>{element.info.title}</b>
+        <b style={ !hover ? STYLE_TITLE : STYLE_TITLE_HOVER }>{translator.t(element.info.title)}</b>
         <div style={ STYLE_IMAGE_CONTAINER }>
           <div style={{...( !hover ? STYLE_IMAGE: STYLE_IMAGE_HOVER ), backgroundImage: 'url(' + element.info.image + ')'}}>
             { hover ? <IconAdd style={STYLE_PLUS_HOVER} /> : null }
@@ -163,5 +166,6 @@ CatalogItem.contextTypes = {
   itemsActions: PropTypes.object.isRequired,
   linesActions: PropTypes.object.isRequired,
   holesActions: PropTypes.object.isRequired,
-  projectActions: PropTypes.object.isRequired
+  projectActions: PropTypes.object.isRequired,
+  translator: PropTypes.object.isRequired,
 };

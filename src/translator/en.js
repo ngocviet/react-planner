@@ -100,5 +100,14 @@ export default {
   "Fire Resistance Requirement": "Fire Resistance Requirement",
   "Acoustic Requirement": "Acoustic Requirement",
   "Aerial acoustic requirement": "Aerial acoustic requirement",
-  "Acoustic impact requirement": "Acoustic impact requirement"
+  "Acoustic impact requirement": "Acoustic impact requirement",
+  "wall": "wall",
+  "separator": "separator",
+  "door": "door",
+  "window": "window",
+  "gate": "gate",
+  "PERIMETER WALL": "PERIMETER WALL",
+  "INTERIOR  WALL": "INTERIOR  WALL",
+  "DIVIDING  WALL": "DIVIDING  WALL"
+
 };

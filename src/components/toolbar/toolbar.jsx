@@ -14,6 +14,7 @@ import {
   MODE_VIEWING_CATALOG,
   MODE_CONFIGURING_PROJECT,
   THERMAL_REQUIREMENTS,
+  FIRE_RESISTANCE_REQUIREMENTS,
   ACOUSTIC_REQUIREMENTS
 } from '../../constants';
 import * as SharedStyle from '../../shared-style';
@@ -170,6 +171,10 @@ export default class Toolbar extends Component {
       },
       {
         index: 10, condition: true,
+        dom: <ToolbarExportFilterButton state={state} type={FIRE_RESISTANCE_REQUIREMENTS} />
+      },
+      {
+        index: 11, condition: true,
         dom: <ToolbarExportFilterButton state={state} type={ACOUSTIC_REQUIREMENTS} />
       }
     ];

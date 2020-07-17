@@ -9,6 +9,8 @@ const epsilon = 20;
 const STYLE_TEXT = { textAnchor: 'middle' };
 const STYLE_LINE = { stroke: SharedStyle.LINE_MESH_COLOR.selected };
 const STYLE_RECT = { strokeWidth: 1, stroke: SharedStyle.LINE_MESH_COLOR.unselected, fill: 'url(#diagonalFill)' };
+const STYLE_RECT_RED = { strokeWidth: 1, stroke: SharedStyle.LINE_MESH_COLOR.unselected, fill: 'url(#diagonalFillRed)' };
+const STYLE_RECT_GREEN = { strokeWidth: 1, stroke: SharedStyle.LINE_MESH_COLOR.unselected, fill: 'url(#diagonalFillGreen)' };
 const STYLE_RECT_SELECTED = { ...STYLE_RECT, stroke: SharedStyle.LINE_MESH_COLOR.selected };
 
 let translator = new Translator();
@@ -50,14 +52,20 @@ export default function WallFactory(name, info, textures, properties) {
       let extra_epsilon = 5;
       let textDistance = half_thickness + epsilon + extra_epsilon;
 
+      const wallType = element.get('type');
+      let styleRect = wallType === 'interior-wall' ? STYLE_RECT_RED :
+        wallType === 'dividing-wall' ? STYLE_RECT_GREEN : STYLE_RECT;
+
+      let styleRectSelect = { ...styleRect, stroke: SharedStyle.LINE_MESH_COLOR.selected };
+
       return (element.selected) ?
         <g>
-          <rect x="0" y={-half_thickness} width={length} height={thickness} style={STYLE_RECT_SELECTED} />
+          <rect x="0" y={-half_thickness} width={length} height={thickness} style={styleRectSelect} />
           <line x1={length_5} y1={-half_thickness_eps} x2={length_5} y2={half_thickness_eps} style={STYLE_LINE} />
           <text x={length_5} y={textDistance + char_height} style={STYLE_TEXT}>A</text>
           <text x={length_5} y={-textDistance} style={STYLE_TEXT}>B</text>
         </g> :
-        <rect x="0" y={-half_thickness} width={length} height={thickness} style={STYLE_RECT} />
+        <rect x="0" y={-half_thickness} width={length} height={thickness} style={styleRect} />
     },
 
     render3D: function (element, layer, scene) {
