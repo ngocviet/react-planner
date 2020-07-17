@@ -310,3 +310,39 @@ export const KEYBOARD_BUTTON_CODE = {
   ENTER: 13,
   TAB: 9
 };
+
+export const THERMAL_REQUIREMENTS = "Thermal Requirement";
+export const FIRE_RESISTANCE_REQUIREMENTS = "Fire Resistance Requirement";
+export const ACOUSTIC_REQUIREMENTS = "Acoustic Requirement";
+
+
+export const CURRENT_THERMAL_REGULATION = "Current thermal regulations";
+export const FUTURE_THERMAL_REGULATION = "Future thermal regulations";
+export const THERMAL_REGULATION = [
+  CURRENT_THERMAL_REGULATION,
+  FUTURE_THERMAL_REGULATION
+];
+
+export const ISOLATE_BUILDING = "Isolated Building";
+export const VERTICAL_PAIRED_BUILDING = "Vertically Paired Building";
+export const HORIZONTAL_PAIRED_BUILDING = "Horizontal Paired Building";
+export const CONTINUOUS_BUILDING = "Continuous Building";
+export const COLLECTIVE_BUILDING = "Collective Building";
+export const TYPE_OF_GROUPING = [
+  ISOLATE_BUILDING,
+  VERTICAL_PAIRED_BUILDING,
+  HORIZONTAL_PAIRED_BUILDING,
+  CONTINUOUS_BUILDING,
+  COLLECTIVE_BUILDING
+];
+
+export const NUMBER_OF_FLOORS = [
+  1, 2, 3, 4, 5, 6
+];
+
+export const VENTILATED = "Ventilated";
+export const RADIER = "Radier";
+export const FIRST_FLOOR_TYPE = [
+  VENTILATED,
+  RADIER
+];

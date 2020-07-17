@@ -1,5 +1,5 @@
 import {Record, List, Map, fromJS} from 'immutable';
-import {MODE_IDLE} from './constants';
+import { MODE_IDLE, CURRENT_THERMAL_REGULATION, ISOLATE_BUILDING, VENTILATED } from './constants';
 import {SNAP_MASK} from './utils/snap';
 
 let safeLoadMapList = (mapList, Model, defaultMap) => {
@@ -210,7 +210,15 @@ export class Scene extends Record({
   defaultWallWidth: 20,
   defaultWallHeight: 300,
   meta: new Map(),   //additional info
-  guides: new Map()
+  guides: new Map(),
+  // New customize information
+  thermalRegulation: CURRENT_THERMAL_REGULATION,
+  typeOfGrouping: ISOLATE_BUILDING,
+  numberOfFloor: 1,
+  firstFloorType: VENTILATED,
+  region: 15,
+  commune: 'Arica',
+  thermalZone: 1
 }, 'Scene') {
   constructor(json = {}) {
     let layers = safeLoadMapList(json.layers, Layer, DefaultLayers);

@@ -39,12 +39,12 @@ export function browserUpload() {
   });
 }
 
-export function csvDownload(json) {
+export function csvDownload(json, filename) {
   if (_.isNil(json) || _.isNil(json[0])) {
     return;
   }
 
-  let filename = 'result_generate_' + Date.now() + '.csv';
+  let exportFileName = filename ? filename : 'result_generate_' + Date.now() + '.csv';
 
   const headers = Object.keys(json[0]);
 
@@ -63,5 +63,5 @@ export function csvDownload(json) {
   });
 
   var blob = new Blob([csvContent], { type: "data:text/csv;charset=utf-8" });
-  saveAs(blob, filename);
+  saveAs(blob, exportFileName);
 }

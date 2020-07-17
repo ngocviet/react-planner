@@ -12,9 +12,12 @@ import {
   MODE_3D_VIEW,
   MODE_3D_FIRST_PERSON,
   MODE_VIEWING_CATALOG,
-  MODE_CONFIGURING_PROJECT
+  MODE_CONFIGURING_PROJECT,
+  THERMAL_REQUIREMENTS,
+  ACOUSTIC_REQUIREMENTS
 } from '../../constants';
 import * as SharedStyle from '../../shared-style';
+import ToolbarExportFilterButton from './toolbar-export-filter-button';
 
 const iconTextStyle = {
   fontSize: '19px',
@@ -160,6 +163,14 @@ export default class Toolbar extends Component {
           onClick={event => projectActions.openProjectConfigurator()}>
           <MdSettings />
         </ToolbarButton>
+      },
+      {
+        index: 9, condition: true,
+        dom: <ToolbarExportFilterButton state={state} type={THERMAL_REQUIREMENTS} />
+      },
+      {
+        index: 10, condition: true,
+        dom: <ToolbarExportFilterButton state={state} type={ACOUSTIC_REQUIREMENTS} />
       }
     ];
 
